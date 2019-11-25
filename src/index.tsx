@@ -1,12 +1,16 @@
-import React from "react";
-import PropTypes from "prop-types";
-import SRLContextComponent from "./SRL/SRLContext";
-import SRLWrapper from "./SRL/SRLWrapper";
-import SRLLightbox from "./SRL/SRLLightbox";
-import { withSRLContext } from "./SRL/SRLHoc";
-import { Global, css } from "@emotion/core";
+import React from 'react'
+import SRLContextComponent from './SRL/SRLContext'
+import SRLWrapper from './SRL/SRLWrapper'
+import SRLLightbox from './SRL/SRLLightbox'
+import { withSRLContext } from './SRL/SRLHoc'
+import { Global, css } from '@emotion/core'
 
-const SimpleReactLightbox = ({ children }) => {
+type Props = {
+  children: object
+}
+
+const SimpleReactLightbox: React.FC<Props> = props => {
+  const { children } = props
   return (
     <>
       <Global
@@ -36,16 +40,9 @@ const SimpleReactLightbox = ({ children }) => {
         <SRLLightbox />
       </SRLContextComponent>
     </>
-  );
-};
+  )
+}
 
-SimpleReactLightbox.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired
-};
-
-export { withSRLContext };
-export { SRLWrapper };
-export default SimpleReactLightbox;
+export { withSRLContext }
+export { SRLWrapper }
+export default SimpleReactLightbox

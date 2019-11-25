@@ -1,6 +1,6 @@
 {
-  "parser": "babel-eslint",
-  "extends": ["standard", "standard-react", "prettier"],
+  "parser": "@typescript-eslint/parser",
+  "extends": ["standard", "standard-react", "prettier", "prettier/@typescript-eslint", "@typescript-eslint/recommended"],
   "env": {
     "es6": true
   },
