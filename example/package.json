@@ -15,7 +15,7 @@
     "react-scripts": "3.0.1",
     "react-slick": "^0.25.2",
     "react-syntax-highlighter": "^12.2.1",
-    "simple-react-lightbox": "link:..",
+    "simple-react-lightbox": "^2.5.0",
     "slick-carousel": "^1.8.1"
   },
   "scripts": {
