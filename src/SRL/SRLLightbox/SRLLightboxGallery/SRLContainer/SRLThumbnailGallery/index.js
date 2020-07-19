@@ -59,7 +59,7 @@ const SRLThumbnailGalleryComponent = ({
       }
 
       // Scroll the thumbnails automatically and sync the light-box
-      if (SRLTCR.scrollWidth > SRLTCR.offsetWidth) {
+      if (SRLTCR.scrollWidth > SRLTCR.offsetWidth && SRLTCR.offsetWidth - 20 < bcr.left) {
         if ('scrollBehavior' in document.documentElement.style) {
           SRLTCR.scrollBy({
             top: 0,
@@ -69,7 +69,7 @@ const SRLThumbnailGalleryComponent = ({
         } else {
           SRLTCR.scrollLeft = bcr.left
         }
-      } else if (SRLTCR.scrollHeight > SRLTCR.offsetHeight) {
+      } else if (SRLTCR.scrollHeight > SRLTCR.offsetHeight && SRLTCR.offsetHeight - 20 < bcr.top) {
         if ('scrollBehavior' in document.documentElement.style) {
           SRLTCR.scrollBy({
             top: bcr.top,
@@ -86,7 +86,7 @@ const SRLThumbnailGalleryComponent = ({
     on the image immediately after releasing the mouse, so we need a condition
     to determine if we are "clicking" on the same point on the page (pageX OR pageY)
     and that we are not coming from a drag action */
-    handleCurrentElementRef.current = function (pageX, pageY, id) {
+    handleCurrentElementRef.current = function(pageX, pageY, id) {
       if (
         SRLTCR.scrollWidth > SRLTCR.offsetWidth ||
         SRLTCR.scrollHeight > SRLTCR.offsetHeight
@@ -132,18 +132,18 @@ const SRLThumbnailGalleryComponent = ({
     }
 
     // EVENT LISTENERS
-    SRLTCR.addEventListener('mousedown', (e) =>
+    SRLTCR.addEventListener('mousedown', e =>
       handleMouseDownOnThumbnails(e.pageX, e.pageY)
     )
     SRLTCR.addEventListener('mouseleave', () => handleMouseLeaveOnThumbnails())
     SRLTCR.addEventListener('mouseup', () => handleMouseLeaveOnThumbnails())
-    SRLTCR.addEventListener('mousemove', (e) =>
+    SRLTCR.addEventListener('mousemove', e =>
       handleMouseMoveOnThumbnails(e.pageX, e.pageY)
     )
 
     // CLEAN UP
     return () => {
-      SRLTCR.removeEventListener('mousedown', (e) =>
+      SRLTCR.removeEventListener('mousedown', e =>
         handleMouseDownOnThumbnails(e.pageX)
       )
       SRLTCR.removeEventListener('mouseleave', () =>
@@ -152,7 +152,7 @@ const SRLThumbnailGalleryComponent = ({
       SRLTCR.removeEventListener('mouseup', () =>
         handleMouseLeaveOnThumbnails()
       )
-      SRLTCR.removeEventListener('mousemove', (e) =>
+      SRLTCR.removeEventListener('mousemove', e =>
         handleMouseMoveOnThumbnails(e)
       )
     }
@@ -168,12 +168,11 @@ const SRLThumbnailGalleryComponent = ({
       thumbnailsContainerPadding={thumbnailsContainerPadding}
       className="SRLThumbnailsContainer"
     >
-      {elements.map((element) => {
+      {elements.map(element => {
         return (
           <SRLThumbnailGalleryImage
-            onClick={(e) =>
-              handleCurrentElementRef.current(e.pageX, e.pageY, element.id)
-            }
+            onClick={e =>
+              handleCurrentElementRef.current(e.pageX, e.pageY, element.id)}
             thumbnailsOpacity={thumbnailsOpacity}
             thumbnailsSize={thumbnailsSize}
             thumbnailsGap={thumbnailsGap}
