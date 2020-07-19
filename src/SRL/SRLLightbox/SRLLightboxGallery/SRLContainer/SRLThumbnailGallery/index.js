@@ -63,14 +63,18 @@ const SRLThumbnailGalleryComponent = ({
         SRLTCR.scrollWidth > SRLTCR.offsetWidth &&
         (SRLTCR.offsetWidth - bcr.width < bcr.left || bcr.left < bcr.width)
       ) {
+        const scrollLeft =
+          SRLTCR.offsetWidth - bcr.width < bcr.left
+            ? bcr.left
+            : bcr.right - SRLTCR.offsetWidth
         if ('scrollBehavior' in document.documentElement.style) {
           SRLTCR.scrollBy({
             top: 0,
-            left: bcr.left,
+            left: scrollLeft,
             behavior: 'smooth'
           })
         } else {
-          SRLTCR.scrollLeft = bcr.left
+          SRLTCR.scrollLeft = scrollLeft
         }
       } else if (
         SRLTCR.scrollHeight > SRLTCR.offsetHeight &&
