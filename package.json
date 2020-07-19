@@ -4,7 +4,7 @@
   "description": "A simple but functional light-box for React.",
   "author": "michelecocuccio",
   "license": "MIT",
-  "repository": "michelecocuccio/simple-react-lightbox",
+  "repository": "peterapps/simple-react-lightbox",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
@@ -37,8 +37,8 @@
     "test:watch": "react-scripts test --env=jsdom  --passWithNoTests",
     "build": "rollup -c",
     "start": "rollup -c -w",
-    "prepare": "yarn run build",
-    "predeploy": "cd example && yarn install && yarn run build"
+    "prepare": "npm run build",
+    "predeploy": "cd example && npm install && npm run build"
   },
   "peerDependencies": {
     "prop-types": "^15.7.2",
